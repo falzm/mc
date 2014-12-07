@@ -56,10 +56,10 @@ func (cmd mcGetCommand) Run(args []string) int {
 		if err == memcache.ErrCacheMiss {
 			cmd.ui.Output("NOT FOUND")
 			return 0
-		} else {
-			cmd.ui.Error(fmt.Sprintf("Error: unable to get value: %s", err))
-			return 1
 		}
+
+		cmd.ui.Error(fmt.Sprintf("Error: unable to get value: %s", err))
+		return 1
 	}
 
 	cmd.ui.Output(string(item.Value))

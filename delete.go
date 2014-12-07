@@ -54,10 +54,10 @@ func (cmd mcDeleteCommand) Run(args []string) int {
 	if err := mc.Delete(key); err != nil {
 		if err == memcache.ErrCacheMiss {
 			return 0
-		} else {
-			cmd.ui.Error(fmt.Sprintf("Error: unable to delete key: %s", err))
-			return 1
 		}
+
+		cmd.ui.Error(fmt.Sprintf("Error: unable to delete key: %s", err))
+		return 1
 	}
 
 	cmd.ui.Output("OK")
